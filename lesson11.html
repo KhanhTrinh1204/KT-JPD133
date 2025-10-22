@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bài 11 – Halloween Festival 🎃</title>
+  <style>
+    body {
+      font-family: "Noto Sans JP", sans-serif;
+      background: radial-gradient(circle at 30% 20%, #1c2240, #0b0f24 80%);
+      color: #d6e2ff;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(90deg, #141832, #1f264f);
+      color: #f7bda5;
+      text-align: center;
+      padding: 16px 0;
+      box-shadow: 0 2px 10px rgba(255, 167, 110, 0.25);
+      border-bottom: 1px solid rgba(255, 153, 102, 0.3);
+    }
+    header a {
+      color: #f7bda5;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: 0.3s;
+    }
+    header a:hover { color: #ffd9c2; }
+
+    main {
+      flex: 1;
+      max-width: 850px;
+      margin: 40px auto;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 153, 102, 0.25);
+      box-shadow: 0 0 25px rgba(255, 158, 120, 0.1);
+      padding: 40px 30px;
+      backdrop-filter: blur(10px);
+    }
+
+    h2 {
+      color: #f7bda5;
+      text-align: center;
+      font-size: 1.6rem;
+    }
+
+    .question {
+      background: rgba(255, 255, 255, 0.07);
+      border-left: 5px solid #f78d6b;
+      border-radius: 12px;
+      padding: 18px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 25px;
+      box-shadow: inset 0 0 10px rgba(247, 141, 107, 0.2);
+      color: #e3e7ff;
+    }
+
+    .options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .options button {
+      background-color: rgba(255, 255, 255, 0.07);
+      border: 2px solid rgba(247, 141, 107, 0.4);
+      border-radius: 12px;
+      padding: 12px;
+      font-size: 1.05rem;
+      cursor: pointer;
+      transition: 0.25s;
+      font-weight: 500;
+      color: #dbe4ff;
+    }
+
+    .options button:hover {
+      background-color: rgba(255, 187, 150, 0.15);
+      border-color: #f7bda5;
+      transform: translateY(-2px);
+    }
+
+    .correct {
+      background-color: rgba(34, 197, 94, 0.25) !important;
+      border-color: #4ade80 !important;
+      color: #b3f3c0;
+    }
+
+    .wrong {
+      background-color: rgba(239, 68, 68, 0.25) !important;
+      border-color: #f87171 !important;
+      color: #fecaca;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+
+    .next-btn, .back-btn {
+      background: linear-gradient(90deg, #f78d6b, #f5a87a);
+      color: #1c1f2f;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 24px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 0 15px rgba(247, 141, 107, 0.3);
+    }
+    .next-btn:hover, .back-btn:hover {
+      background: linear-gradient(90deg, #ffc8a0, #f78d6b);
+      box-shadow: 0 0 25px rgba(255, 200, 150, 0.4);
+    }
+
+    #result {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #ffbba0;
+    }
+
+    footer {
+      background: linear-gradient(90deg, #141832, #1a1e3b);
+      color: #d6e2ff;
+      text-align: center;
+      padding: 16px 0;
+      border-top: 1px solid rgba(255, 153, 102, 0.3);
+      font-size: 0.95rem;
+      margin-top: auto;
+    }
+    footer span { color: #f7bda5; }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html">🏠 KT Academy Nihongo</a>
+    <h1>Bài 11 – せんりのみちもいっぽから 🎃</h1>
+  </header>
+
+  <main>
+    <h2>🎃 Luyện tập ngữ pháp Bài 11</h2>
+    <p style="text-align:center; color:#b5bce6; margin-bottom:30px;">Chọn đáp án đúng nhất cho từng câu hỏi nhé!</p>
+
+    <div id="quiz"></div>
+
+    <div class="controls">
+      <button class="back-btn" onclick="goHome()">⬅ Trang chủ</button>
+      <button class="next-btn" id="nextBtn" onclick="nextQuestion()">Câu tiếp ➡</button>
+    </div>
+
+    <div id="result"></div>
+  </main>
+
+  <footer>
+    © 2025 <span>KT Academy Nihongo</span> | ハロウィーンのように楽しく学ぼう 🎃👻
+  </footer>
+
+  <script>
+    const quizData = [
+      { q: "① 私はすしは好きですが、すき焼き（　）好きじゃありません。", opts: ["が","を","は","も"], ans: "が" },
+      { q: "② 国（　）では　料理を作りませんでしたが、日本（　）では　料理を作ります。", opts: ["で・が","では・で","に・を","で・に"], ans: "では・で" },
+      { q: "③ 昨日はパーティーでした。マルコさんはギターを（　）り、歌を（　）りしました。", opts: ["弾き・歌い","弾いた・歌った","弾いて・歌って","弾きた・歌い"], ans: "弾いた・歌った" },
+      { q: "④ 休みの日、うちで音楽を（　）り、テレビを（　）りしています。", opts: ["聞いて・見て","聞き・見た","聞いた・見た","聞き・見て"], ans: "聞いた・見た" },
+      { q: "⑤ （　）とき、うちでゲームをします。", opts: ["暇・暇の・暇な・暇に"], ans: "暇な" },
+      { q: "⑥ 風邪を（　）とき、病院へ行きます。", opts: ["ひいた","ひき","ひく","ひこう"], ans: "ひいた" },
+      { q: "⑦ アルバイトを（　）とき、店長に電話をします。", opts: ["休む","休み","休んだ","休もう"], ans: "休む" },
+      { q: "⑧ （　）とき、チョコレートを食べます。", opts: ["疲れた","疲れる","疲れて","疲れ"], ans: "疲れた" },
+      { q: "⑨ （　）とき、初めて飛行機に乗りました。", opts: ["中学生","大学生","高校生","小学生"], ans: "中学生" },
+      { q: "⑩ 日本へ（　）とき、国の友達に時計をもらいました。", opts: ["来た","来て","来る","行った"], ans: "来た" },
+      { q: "⑪ 今晩、一緒にカラオケに行かない？", opts: ["ごめん。明日、テストだ。","いいね！","たぶん行く。","考える。"], ans: "ごめん。明日、テストだ。" }
+    ];
+
+    let current = 0, score = 0;
+
+    function loadQuestion() {
+      const q = quizData[current];
+      document.getElementById("quiz").innerHTML = `
+        <div class='question'>${current + 1}. ${q.q}</div>
+        <div class='options'>
+          ${q.opts.map(o => `<button onclick="checkAnswer(this,'${o}')">${o}</button>`).join("")}
+        </div>
+      `;
+    }
+
+    function checkAnswer(btn, selected) {
+      const correct = quizData[current].ans;
+      document.querySelectorAll(".options button").forEach(b => {
+        b.disabled = true;
+        if (b.textContent === correct) b.classList.add("correct");
+        else if (b.textContent === selected) b.classList.add("wrong");
+      });
+      if (selected === correct) score++;
+    }
+
+    function nextQuestion() {
+      if (current < quizData.length - 1) {
+        current++;
+        loadQuestion();
+      } else {
+        const percent = (score / quizData.length) * 100;
+        const msg = percent >= 90
+          ? "🌌 Xuất sắc! Cậu thật tuyệt vời đó!"
+          : "🌙 Cố lên nhé! Lần sau điểm cao hơn chắc luôn!";
+        document.getElementById("quiz").innerHTML = `
+          <h3>Kết quả: ${score}/${quizData.length} (${percent.toFixed(1)}%)</h3>
+          <p>${msg}</p>
+        `;
+        document.getElementById("nextBtn").style.display = "none";
+      }
+    }
+
+    function goHome() { window.location.href = "index.html"; }
+    loadQuestion();
+  </script>
+</body>
+</html>

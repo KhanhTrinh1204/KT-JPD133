@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bài 8 – KT Academy Nihongo</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://kit.fontawesome.com/9d8d7ed4d1.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: "Poppins", "Noto Sans JP", sans-serif;
+            background: linear-gradient(135deg, #0f0f1f, #4b0082);
+            color: #fff;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(15, 15, 31, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #6a1b9a;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            z-index: 20;
+        }
+
+        .header-container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0.8rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+        }
+
+        .header-left img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+
+        .header-left h1 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #d1b3ff;
+        }
+
+        .header-nav a {
+            color: #dcdcdc;
+            margin: 0 0.7rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .header-nav a:hover {
+            color: #b388ff;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 1rem;
+        }
+
+        .quiz-box {
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid #6a1b9a;
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 850px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(106, 27, 154, 0.3);
+        }
+
+        .quiz-title {
+            color: #d1b3ff;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .quiz-meaning {
+            font-style: italic;
+            color: #cfcfcf;
+            margin-bottom: 1.5rem;
+        }
+
+        .question {
+            background: rgba(255, 255, 255, 0.1);
+            border-left: 5px solid #b388ff;
+            padding: 1rem;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.8rem;
+        }
+
+        .option {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid #6a1b9a;
+            color: #eee;
+            padding: 0.6rem 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .option:hover {
+            background: #6a1b9a;
+            border-color: #b388ff;
+        }
+
+        .option.correct {
+            background: #43a047;
+            border-color: #66bb6a;
+            color: #fff;
+        }
+
+        .option.wrong {
+            background: #d32f2f;
+            border-color: #ef5350;
+            color: #fff;
+        }
+
+        .result {
+            font-size: 1.1rem;
+            margin-top: 1rem;
+        }
+
+        .next-btn {
+            margin-top: 1.5rem;
+            background: #6a1b9a;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 0.6rem 1.5rem;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .next-btn:hover {
+            background: #b388ff;
+            color: #1a1a1a;
+        }
+
+        .final-score {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            color: #d1b3ff;
+        }
+
+        footer {
+            background: rgba(15, 15, 31, 0.95);
+            border-top: 1px solid #6a1b9a;
+            color: #ccc;
+            text-align: center;
+            padding: 1rem 0;
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
+
+        footer a {
+            color: #b388ff;
+            margin: 0 0.5rem;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="header-left">
+                <img src="https://cdn-icons-png.flaticon.com/512/197/197604.png" alt="JP">
+                <h1>KT Academy Nihongo</h1>
+            </a>
+            <nav class="header-nav">
+                <a href="index.html">Home</a>
+                
+                <a href="lesson9.html">Bài 9</a>
+                <a href="lesson10.html">Bài 10</a>
+                <a href="lesson11.html">Bài 11</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="quiz-box">
+            <h2 id="grammar-title" class="quiz-title"></h2>
+            <p id="grammar-meaning" class="quiz-meaning"></p>
+            <div id="question" class="question"></div>
+            <div id="options" class="options"></div>
+            <div id="result" class="result"></div>
+            <button id="next-btn" class="next-btn" style="display:none;">Câu tiếp ➜</button>
+            <div id="final-score" class="final-score"></div>
+        </div>
+    </main>
+
+    <footer>
+        © 2025 KT Academy | 日本語で楽しく学ぼう ✨ |
+        <a href="#"><i class="fa-brands fa-github"></i></a>
+        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#"><i class="fa-brands fa-discord"></i></a>
+    </footer>
+
+    <script>
+        // ======== DỮ LIỆU BÀI 8 (rút gọn mẫu) ========
+        const grammarList =
+            [{
+                title: "1️⃣ Địa điểmAにすんでいます", meaning: "Sống ở địa điểm A / Sống cùng với N", quizzes:
+                    [{ q: "わたしは　ハノイ（　）すんでいます。", ans: "に", opts: ["に", "で", "を", "へ"] },
+                    { q: "田中さんは　家族（　）東京にすんでいます。", ans: "と", opts: ["で", "を", "と", "に"] },
+                    { q: "友だち（　）日本にすんでいます。", ans: "と", opts: ["を", "で", "と", "が"] },
+                    { q: "先生は　大阪（　）すんでいます。", ans: "に", opts: ["を", "が", "に", "で"] },
+                    { q: "わたしは　一人（　）アパートにすんでいます。", ans: "で", opts: ["で", "を", "と", "が"] },]
+            },
+            {
+                title: "2️⃣ Vています（thói quen / nghề nghiệp）", meaning: "Diễn tả việc đang làm thường xuyên, nghề nghiệp",
+                quizzes: [{ q: "マリアさんは　だいがく（　）べんきょうしています。", ans: "で", opts: ["で", "に", "を", "へ"] },
+                { q: "父は　会社（　）働いています。", ans: "で", opts: ["に", "へ", "で", "を"] },
+                { q: "私は　日本語（　）勉強しています。", ans: "を", opts: ["で", "を", "に", "が"] },
+                { q: "兄は　銀行（　）働いています。", ans: "で", opts: ["を", "で", "に", "と"] }, { q: "母は　学校（　）教えています。", ans: "で", opts: ["に", "で", "を", "が"] },]
+            },
+            {
+                title: "3️⃣ SはNがAです（tính chất）", meaning: "S có N mang đặc điểm / tính chất A",
+                quizzes: [{ q: "カンさんは　かみ（　）短いです。", ans: "が", opts: ["が", "を", "に", "は"] }, { q: "山田さんは　日本語（　）上手です。", ans: "が", opts: ["に", "を", "が", "で"] }, { q: "妹は　目（　）大きいです。", ans: "が", opts: ["を", "が", "で", "に"] }, { q: "私の犬は　足（　）長いです。", ans: "が", opts: ["を", "に", "が", "へ"] }, { q: "彼は　声（　）きれいです。", ans: "が", opts: ["に", "が", "を", "で"] },]
+            },
+            {
+                title: "4️⃣ Aい→Aくて・Aな→Aで・N→Nで", meaning: "Nối các tính từ hoặc danh từ với nhau",
+                quizzes: [{ q: "Aさんは　かみが短くて（　）きれいです。", ans: "とても", opts: ["で", "が", "とても", "を"] },
+                { q: "へやは広くて（　）です。", ans: "明るい", opts: ["で", "が", "明るい", "を"] },
+                { q: "彼は親切で（　）です。", ans: "まじめ", opts: ["まじめ", "きれい", "おいしい", "ひろい"] },
+                { q: "山は高くて（　）です。", ans: "寒い", opts: ["寒い", "きれい", "しずか", "にぎやか"] },
+                { q: "Aさんはまじめで（　）です。", ans: "やさしい", opts: ["やさしい", "はやい", "あかるい", "さむい"] },]
+            },
+            {
+                title: "5️⃣ Aと（人数）でNをVます", meaning: "Làm gì đó cùng bao nhiêu người",
+                quizzes: [{ q: "ともだち（　）二人でカラオケに行きます。", ans: "と", opts: ["で", "を", "と", "に"] },
+                { q: "家族（　）五人で旅行します。", ans: "と", opts: ["と", "が", "を", "で"] },
+                { q: "先生（　）三人で食事をしました。", ans: "と", opts: ["と", "で", "を", "が"] },
+                { q: "友だち（　）四人でサッカーをします。", ans: "と", opts: ["に", "で", "と", "を"] },
+                { q: "母（　）兄と三人で買い物に行きました。", ans: "と", opts: ["に", "を", "で", "と"] },]
+            },
+            {
+                title: "6️⃣ Nがsố lượng+います", meaning: "Có bao nhiêu người / con vật",
+                quizzes: [{ q: "クラスに学生（　）三十人います。", ans: "が", opts: ["が", "を", "で", "に"] },
+                { q: "部屋にねこ（　）二ひきいます。", ans: "が", opts: ["に", "が", "で", "と"] },
+                { q: "家に子ども（　）三人います。", ans: "が", opts: ["を", "が", "で", "に"] },
+                { q: "公園に犬（　）五ひきいます。", ans: "が", opts: ["に", "で", "が", "と"] },
+                { q: "会社に日本人（　）四人います。", ans: "が", opts: ["を", "が", "に", "で"] },]
+            },
+            {
+                title: "7️⃣ AはBにNをあげます", meaning: "A tặng N cho B (B không phải 私)",
+                quizzes: [{ q: "私は友だち（　）本をあげました。", ans: "に", opts: ["を", "に", "で", "が"] },
+                { q: "父は母（　）花をあげました。", ans: "に", opts: ["に", "を", "で", "が"] },
+                { q: "先生は学生（　）おみやげをあげました。", ans: "に", opts: ["を", "が", "に", "で"] },
+                { q: "田中さんは友だち（　）ケーキをあげました。", ans: "に", opts: ["に", "を", "で", "が"] },
+                { q: "私は妹（　）ノートをあげました。", ans: "に", opts: ["に", "で", "を", "が"] },]
+            },
+            {
+                title: "8️⃣ Aは/がBにNをくれます・もらいます", meaning: "A cho hoặc nhận N từ B",
+                quizzes: [{ q: "先生（　）わたしに本をくれました。", ans: "が", opts: ["が", "に", "を", "で"] },
+                { q: "田中さん（　）プレゼントをくれました。", ans: "が", opts: ["を", "が", "に", "で"] },
+                { q: "友だち（　）手紙をくれました。", ans: "が", opts: ["が", "に", "で", "を"] },
+                { q: "母（　）お金をくれました。", ans: "が", opts: ["に", "が", "で", "を"] },
+                { q: "私は先生（　）本をもらいました。", ans: "に", opts: ["に", "が", "を", "で"] },]
+            },
+            {
+                title: "9️⃣ ～がほしいです", meaning: "Muốn có ~ (danh từ)",
+                quizzes: [{ q: "わたしは新しいくるま（　）ほしいです。", ans: "が", opts: ["が", "を", "に", "で"] },
+                { q: "妹は犬（　）ほしいです。", ans: "が", opts: ["が", "に", "を", "で"] },
+                { q: "父はパソコン（　）ほしいです。", ans: "が", opts: ["に", "が", "を", "で"] },
+                { q: "母はあたらしいかばん（　）ほしいです。", ans: "が", opts: ["を", "が", "に", "で"] },
+                { q: "わたしは日本の本（　）ほしいです。", ans: "が", opts: ["に", "が", "を", "で"] },]
+            }];
+
+        let gIndex = 0, qIndex = 0, correct = 0;
+        const total = grammarList.reduce((s, g) => s + g.quizzes.length, 0);
+
+        const title = document.getElementById("grammar-title"),
+            meaning = document.getElementById("grammar-meaning"),
+            qEl = document.getElementById("question"),
+            optEl = document.getElementById("options"),
+            res = document.getElementById("result"),
+            next = document.getElementById("next-btn"),
+            final = document.getElementById("final-score");
+
+        function loadQ() {
+            const g = grammarList[gIndex], q = g.quizzes[qIndex];
+            title.textContent = g.title; meaning.textContent = g.meaning;
+            qEl.textContent = q.q; res.textContent = ""; next.style.display = "none"; final.textContent = "";
+            optEl.innerHTML = "";
+            q.opts.forEach(o => {
+                const b = document.createElement("button");
+                b.className = "option"; b.textContent = o;
+                b.onclick = () => check(b, q.ans);
+                optEl.appendChild(b);
+            });
+        }
+
+        function check(btn, ans) {
+            const all = document.querySelectorAll(".option");
+            all.forEach(b => b.disabled = true);
+            if (btn.textContent === ans) { btn.classList.add("correct"); res.textContent = "✅ Chính xác!"; correct++; }
+            else { btn.classList.add("wrong"); res.textContent = `❌ Sai rồi, đáp án đúng là 「${ans}」`; }
+            next.style.display = "inline-block";
+        }
+
+        next.onclick = () => {
+            const g = grammarList[gIndex];
+            if (qIndex < g.quizzes.length - 1) qIndex++;
+            else if (gIndex < grammarList.length - 1) { gIndex++; qIndex = 0; }
+            else { endQuiz(); return; }
+            loadQ();
+        }
+
+        function endQuiz() {
+            const score = Math.round(correct / total * 100);
+            qEl.textContent = ""; optEl.innerHTML = ""; next.style.display = "none"; res.textContent = "";
+            final.innerHTML = `<p>🎯 Điểm của bạn: <strong>${score}%</strong></p>
+        <p>${score >= 90 ? "🌸 Cậu đã làm rất tốt rồi đó!" : "💪 Hãy cố gắng để đạt được điểm số tốt hơn nhé!"}</p>`;
+        }
+
+        loadQ();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bài 9 – KT Academy Nihongo ⚡</title>
+    <style>
+        body {
+            font-family: "Noto Sans JP", sans-serif;
+            background: radial-gradient(circle at 20% 20%, #101015, #060606 90%);
+            color: #eee;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(90deg, #1a1a1a, #111);
+            border-bottom: 1px solid #ff9e3d;
+            text-align: center;
+            padding: 14px 0;
+            box-shadow: 0 2px 10px rgba(255, 158, 61, 0.3);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.7rem;
+            color: #ff9e3d;
+            letter-spacing: 1px;
+        }
+
+        header a {
+            color: #ffb64a;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: 0.3s;
+        }
+
+        header a:hover {
+            color: #ffe9b0;
+        }
+
+        main {
+            flex: 1;
+            max-width: 850px;
+            margin: 40px auto;
+            background: rgba(25, 25, 25, 0.8);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 158, 61, 0.2);
+            box-shadow: 0 0 25px rgba(255, 158, 61, 0.15);
+            padding: 40px 30px;
+        }
+
+        h2 {
+            color: #ffb64a;
+            text-align: center;
+            font-size: 1.6rem;
+            margin-top: 0;
+        }
+
+        .question {
+            background: rgba(255, 158, 61, 0.05);
+            border-left: 5px solid #ff9e3d;
+            border-radius: 12px;
+            padding: 18px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #f5f5f5;
+            margin-bottom: 25px;
+            box-shadow: inset 0 0 8px rgba(255, 158, 61, 0.1);
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .options button {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1.5px solid rgba(255, 158, 61, 0.4);
+            border-radius: 12px;
+            padding: 12px;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: 0.25s;
+            font-weight: 500;
+            color: #eee;
+        }
+
+        .options button:hover {
+            background-color: rgba(255, 158, 61, 0.15);
+            border-color: #ffb64a;
+            transform: translateY(-2px);
+        }
+
+        .correct {
+            background-color: rgba(72, 187, 120, 0.3) !important;
+            border-color: #4ade80 !important;
+            color: #a7f3d0;
+        }
+
+        .wrong {
+            background-color: rgba(239, 68, 68, 0.25) !important;
+            border-color: #f87171 !important;
+            color: #fecaca;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .next-btn,
+        .back-btn {
+            background-color: #ff9e3d;
+            color: #111;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 24px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 0 10px rgba(255, 158, 61, 0.3);
+        }
+
+        .next-btn:hover,
+        .back-btn:hover {
+            background-color: #ffc266;
+            box-shadow: 0 0 20px rgba(255, 200, 100, 0.4);
+        }
+
+        #result {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #ffb84d;
+        }
+
+        footer {
+            background: linear-gradient(90deg, #1a1a1a, #0d0d0d);
+            border-top: 1px solid #ff9e3d;
+            color: #ccc;
+            text-align: center;
+            padding: 16px 0;
+            font-size: 0.95rem;
+            margin-top: auto;
+        }
+
+        footer span {
+            color: #ffb64a;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="index.html">🏠 KT Academy Nihongo</a>
+        <h1>Bài 9 – Keep it up bro ⚡</h1>
+    </header>
+
+    <main>
+        <h2>⚡ Luyện tập ngữ pháp Bài 9</h2>
+        <p style="text-align:center; color:#aaa; margin-bottom:30px;">Chọn đáp án đúng nhất cho từng câu hỏi dưới đây
+            nhé!</p>
+
+        <div id="quiz"></div>
+
+        <div class="controls">
+            <button class="back-btn" onclick="goHome()">⬅ Trang chủ</button>
+            <button class="next-btn" id="nextBtn" onclick="nextQuestion()">Câu tiếp ➡</button>
+        </div>
+
+        <div id="result"></div>
+    </main>
+
+    <footer>
+        © 2025 <span>KT Academy Nihongo</span> | 日本語で楽しく学ぼう ✨
+    </footer>
+
+    <script>
+        const quizData = [
+            { q: "私はスキー（　）が・を（　）できます。", opts: ["が", "を", "に", "で"], ans: "が" },
+            { q: " パクさんはよく（　）買い物します。", opts: ["に", "×", "を", "で"], ans: "に" },
+            { q: " １週間に２回（　）普通教室に行きます。", opts: ["に", "へ", "で", "を"], ans: "に" },
+            { q: "私の趣味は本を（　）ことです。", opts: ["読み", "読んで", "読む", "読まない"], ans: "読む" },
+            { q: " 木村さんの趣味は古いお金を（　）ことです。", opts: ["集める", "集まり", "集めて", "集まる"], ans: "集める" },
+            { q: " 私は上手に英語を（　）ことができません。", opts: ["話す", "話した", "話して", "話し"], ans: "話す" },
+            { q: " 昨日、新宿へ（　）映画を見ました。", opts: ["行くと", "行って", "行きます", "行き"], ans: "行って" },
+            { q: "私の趣味はサッカーを（　）ことです。", opts: ["します", "する", "した", "して"], ans: "する" },
+            { q: " 私の趣味は（　）と絵を見ることです。", opts: ["泳いで", "泳ぐこと", "泳ぎ", "泳ぐ"], ans: "泳ぐこと" },
+            { q: " ダニエルさんは車の（　）ができます。", opts: ["運転", "運転する", "運転をする", "運転して"], ans: "運転" },
+            { q: " 家族と話したいですから、ときどき（　）。", opts: ["電話します", "電話しません", "電話をします", "電話をしません"], ans: "電話します" },
+            { q: " 私は全然テレビを（　）。", opts: ["見ません", "見ます", "見る", "見て"], ans: "見ません" },
+            { q: "私の趣味は料理です。（　）うちで作ります。", opts: ["いつも", "ときどき", "あまり", "ぜんぜん"], ans: "いつも" },
+            { q: "私はお酒が好きじゃありませんから、（　）飲みません。", opts: ["あまり", "よく", "ときどき", "ぜんぜん"], ans: "あまり" },
+            { q: "趣味はピアノです。（　）上手じゃありません。", opts: ["でも", "それから", "そして", "だから"], ans: "でも" },
+            { q: "趣味はスポーツをすることです。（　）野球が好きです。", opts: ["特に", "そして", "それから", "だから"], ans: "特に" }
+        ];
+
+        let current = 0, score = 0;
+
+        function loadQuestion() {
+            const quizBox = document.getElementById("quiz");
+            const q = quizData[current];
+            quizBox.innerHTML = `
+        <div class='question'>${current + 1}. ${q.q}</div>
+        <div class='options'>
+          ${q.opts.map(o => `<button onclick="checkAnswer(this,'${o}')">${o}</button>`).join("")}
+        </div>
+      `;
+        }
+
+        function checkAnswer(btn, selected) {
+            const correct = quizData[current].ans;
+            const buttons = document.querySelectorAll(".options button");
+            buttons.forEach(b => {
+                b.disabled = true;
+                if (b.textContent === correct) b.classList.add("correct");
+                else if (b.textContent === selected) b.classList.add("wrong");
+            });
+            if (selected === correct) score++;
+        }
+
+        function nextQuestion() {
+            if (current < quizData.length - 1) {
+                current++;
+                loadQuestion();
+            } else {
+                const total = quizData.length;
+                const percent = (score / total) * 100;
+                const message =
+                    percent >= 90
+                        ? "⚡ Xuất sắc! Cậu thật tuyệt vời!"
+                        : "💪 Hãy ôn lại để đạt điểm cao hơn nhé！";
+                document.getElementById("quiz").innerHTML = `
+          <h3>Kết quả của bạn: ${score}/${total} (${percent.toFixed(1)}%)</h3>
+          <p>${message}</p>
+        `;
+                document.getElementById("nextBtn").style.display = "none";
+            }
+        }
+
+        function goHome() { window.location.href = "index.html"; }
+        loadQuestion();
+    </script>
+</body>
+
+</html>

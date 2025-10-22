@@ -1,0 +1,180 @@
+/* === Glassmorphism Neon Theme === */
+body {
+  background: radial-gradient(circle at 30% 30%, #2e026d, #0f001a 80%);
+  font-family: "Poppins", "Noto Sans JP", sans-serif;
+  color: white;
+  margin: 0;
+  overflow-x: hidden;
+}
+/* Đảm bảo body và html chiếm đủ chiều cao màn hình */
+html, body {
+    height: 100%;
+    margin: 0; /* Loại bỏ margin mặc định của body */
+}
+
+/* Sử dụng position: fixed để cố định footer ở cuối trình duyệt. 
+   Nếu bạn muốn footer chỉ dính ở cuối trang khi cuộn xuống và nội dung đủ dài, 
+   thì có thể cân nhắc dùng kỹ thuật 'Sticky Footer' với Flexbox hoặc Grid, 
+   nhưng fixed là cách đơn giản nhất để nó luôn ở cuối màn hình.
+*/
+footer {
+    position: fixed; /* Cố định vị trí đối với viewport */
+    bottom: 0;       /* Đặt ở cuối màn hình */
+    left: 0;         /* Bắt đầu từ mép trái */
+    width: 100%;     /* Chiếm toàn bộ chiều rộng */
+    /* Thêm các style khác cho footer (ví dụ: màu nền, căn lề, padding) */
+    background-color: #333; /* Màu nền ví dụ */
+    color: white;           /* Màu chữ ví dụ */
+    text-align: center;
+    padding: 10px 0;
+    z-index: 1000;   /* Đảm bảo nó nằm trên các phần tử khác */
+    box-sizing: border-box; /* Quan trọng để padding không làm tăng width */
+}
+/* Header */
+.glass-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 8%;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.glass-header .logo {
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  background: linear-gradient(to right, #c084fc, #f472b6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.glass-header nav a {
+  color: #ccc;
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+.glass-header nav a:hover,
+.glass-header nav a.active {
+  color: #f472b6;
+}
+
+/* Hero section */
+.hero {
+  text-align: center;
+  padding: 100px 20px 60px;
+}
+.hero h4 {
+  letter-spacing: 3px;
+  color: #c084fc;
+  margin-bottom: 10px;
+}
+.hero h1 {
+  font-size: 2.4rem;
+  background: linear-gradient(to right, #f472b6, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero p {
+  color: #e9d5ff;
+  max-width: 700px;
+  margin: 15px auto 50px;
+  line-height: 1.7;
+}
+
+/* Lesson cards */
+.lesson-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+.lesson-card {
+  width: 220px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 20px rgba(236, 72, 153, 0.25);
+  transition: 0.4s;
+}
+.lesson-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 30px rgba(168, 85, 247, 0.4);
+}
+.lesson-card h2 {
+  font-size: 1.4rem;
+  color: #f9a8d4;
+}
+.lesson-card p {
+  font-size: 0.9rem;
+  color: #e9d5ff;
+  margin: 10px 0 15px;
+}
+.lesson-card .btn {
+  display: inline-block;
+  padding: 8px 18px;
+  background: linear-gradient(to right, #ec4899, #8b5cf6);
+  border-radius: 20px;
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: 0.3s;
+}
+.lesson-card .btn:hover {
+  background: linear-gradient(to right, #a855f7, #ec4899);
+}
+
+/* Footer */
+/* Đảm bảo body và html chiếm đủ chiều cao màn hình */
+html, body {
+    height: 100%;
+    margin: 0;
+    /* Optional: Thêm font-family mặc định nếu chưa có */
+    font-family: Arial, sans-serif; 
+}
+
+body {
+    /* Đây là khoảng trống để nội dung không bị footer che, 
+       điều chỉnh nếu chiều cao footer thay đổi */
+    padding-bottom: 50px; 
+    background-color: #1a0a2e; /* Đảm bảo body có màu nền tương tự để hòa hợp */
+    background-image: linear-gradient(to bottom, #1a0a2e, #0e051c); /* Nếu background có gradient */
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /* --- Các thay đổi chính ở đây --- */
+    
+    /* Màu nền: Sử dụng màu tối có sắc tím nhẹ, tương đồng với background chính */
+    background-color: rgba(20, 0, 40, 0.7); /* Ví dụ: một màu tím rất đậm, gần đen, với độ trong suốt */
+    
+    /* Hiệu ứng mờ (như glass-header) */
+    backdrop-filter: blur(8px); /* Tạo hiệu ứng mờ cho nội dung phía sau */
+    -webkit-backdrop-filter: blur(8px); /* Hỗ trợ cho Safari */
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Đường viền mỏng ở trên để tạo sự tách biệt */
+    
+    /* Màu chữ: Màu trắng để nổi bật trên nền tối */
+    color: #ffffff; 
+    
+    /* Đảm bảo text rõ ràng và nổi bật */
+    font-size: 0.95em; /* Kích thước chữ vừa phải */
+    font-weight: 400; /* Trọng lượng chữ */
+    letter-spacing: 0.5px; /* Khoảng cách chữ */
+    
+    /* Căn lề và padding */
+    text-align: center;
+    padding: 15px 0; /* Tăng padding một chút để footer trông "đầy đặn" hơn */
+    
+    z-index: 1000;
+    box-sizing: border-box; 
+}

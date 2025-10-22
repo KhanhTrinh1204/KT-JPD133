@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bài 10 – KT Academy Nihongo 🌋</title>
+    <style>
+        body {
+            font-family: "Noto Sans JP", sans-serif;
+            /* Thay đổi màu nền body sang tông xám tím đậm */
+            background: linear-gradient(to bottom right, #1a0a2e, #0e051c); 
+            color: #dcdcdc; /* Màu chữ tổng thể nhạt hơn */
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            /* Màu nền header sang tím đậm */
+            background-color: #2a1142; 
+            color: white;
+            text-align: center;
+            padding: 16px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.4); /* Đổ bóng đậm hơn */
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        header a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        main {
+            flex: 1;
+            max-width: 850px;
+            margin: 40px auto;
+            /* Màu nền main với độ trong suốt và blur */
+            background-color: rgba(30, 15, 50, 0.6); 
+            backdrop-filter: blur(10px); /* Hiệu ứng glass */
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5); /* Đổ bóng mạnh hơn */
+            padding: 40px 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Viền nhẹ */
+        }
+        h1, h2 {
+            /* Màu chữ tiêu đề sang tím nhạt hoặc trắng */
+            color: #d8b4fe; 
+            text-align: center;
+            font-size: 1.6rem;
+        }
+        p {
+            color: #a0a0a0; /* Màu chữ p nhạt hơn */
+        }
+        .question {
+            /* Màu nền câu hỏi sang xám tím */
+            background: rgba(40, 20, 60, 0.7); 
+            /* Viền trái màu tím */
+            border-left: 5px solid #8e2de2; 
+            border-radius: 12px;
+            padding: 18px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: #e0e0e0; /* Màu chữ câu hỏi */
+        }
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .options button {
+            /* Màu nền option button */
+            background-color: rgba(60, 30, 90, 0.7); 
+            /* Viền option button */
+            border: 2px solid rgba(142, 45, 226, 0.5); 
+            border-radius: 12px;
+            padding: 12px;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: 0.25s;
+            color: #dcdcdc; /* Màu chữ option */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3); /* Thêm đổ bóng */
+        }
+        .options button:hover {
+            /* Màu nền hover option button */
+            background-color: rgba(80, 40, 120, 0.8); 
+            /* Viền hover option button */
+            border-color: #8e2de2; 
+        }
+        .correct {
+            /* Màu nền đúng */
+            background-color: #388e3c !important; 
+            /* Viền đúng */
+            border-color: #66bb6a !important; 
+            color: #fff !important;
+        }
+        .wrong {
+            /* Màu nền sai */
+            background-color: #c62828 !important; 
+            /* Viền sai */
+            border-color: #ef5350 !important; 
+            color: #fff !important;
+        }
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        .next-btn, .back-btn {
+            /* Màu nền nút điều khiển */
+            background-color: #8e2de2; 
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(142, 45, 226, 0.4); /* Đổ bóng tím */
+        }
+        .next-btn:hover, .back-btn:hover { 
+            background-color: #6a1aae; /* Màu hover nút */
+        }
+        #result {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #d8b4fe; /* Màu chữ kết quả */
+        }
+        footer {
+            /* Màu nền footer sang tím đậm */
+            background-color: #2a1142; 
+            color: white;
+            text-align: center;
+            padding: 16px 0;
+            border-top: 2px solid #5a2c8a; /* Viền trên footer */
+            font-size: 0.95rem;
+            margin-top: auto;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.4); /* Đổ bóng footer */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html">🏠 KT Academy Nihongo</a>
+        <h1>Bài 10 – Dont Give Up Bro🌋</h1>
+    </header>
+
+    <main>
+        <h2>🌋 Luyện tập ngữ pháp Bài 10　</h2>
+        <p style="text-align:center; color:#a0a0a0; margin-bottom:30px;">Chọn đáp án đúng nhất cho từng câu hỏi nhé!</p>
+
+        <div id="quiz"></div>
+
+        <div class="controls">
+            <button class="back-btn" onclick="goHome()">⬅ Trang chủ</button>
+            <button class="next-btn" id="nextBtn" onclick="nextQuestion()">Câu tiếp ➡</button>
+        </div>
+
+        <div id="result"></div>
+    </main>
+
+    <footer>
+        © 2025 KT Academy Nihongo | 火山のように熱く学ぼう 🔥
+    </footer>
+
+    <script>
+        const quizData = [
+            { q: "まどから　ふじ山（　）見えます。", opts: ["を","が","に","で"], ans: "が" }, 
+            { q: "あのしんごう（　）左に　まがってください。", opts: ["で","に","を","から"], ans: "を" }, 
+            { q: "ここでバス（　）きっぷ（　）買うことができます。", opts: ["を・を","が・が","の・を","の・が"], ans: "の・を" },
+            { q: "見てください。サル（　）あそんでいますよ。", opts: ["に","を","が","の"], ans: "が" }, 
+            { q: "A：ここに荷物をおいてもいいですか。 B：荷物（　）あそこにおいてください。", opts: ["を","は","が","も"], ans: "は" }, 
+            { q: "もうすぐ３時（　）なります。", opts: ["が","を","に","で"], ans: "に" },
+            { q: "すこし　さむく（　）ました。", opts: ["し","なり","いて","あり"], ans: "なり" },
+            { q: "にぎやか（　）なりました。", opts: ["で","に","が","く"], ans: "に" }, 
+            { q: "しずかにして！　はなさ（　）でください。", opts: ["なく","し","ない","なり"], ans: "ない" },
+            { q: "あそこでパンフレットを（　）ことができます。", opts: ["つくって","もらう","もらって","とって"], ans: "もらう" }, 
+            { q: "まだチケットを（　）ません。", opts: ["買い","買ってい","買いました","買って"], ans: "買ってい" },
+            { q: "あぶないですから、ボタンを（　）でください。", opts: ["さわらない","おさない","のまない","あけない"], ans: "おさない" },
+            { q: "ここはきれいじゃありませんから、あそこで（　）ください。", opts: ["飲んで","帰って","食べないで","食べて"], ans: "食べて" },
+            { q: "先生、トイレへ（　）もいいですか。", opts: ["行かないで","きいて","帰って","行って"], ans: "行って" }, 
+            { q: "駅へ行きたいです。行き方を（　）もいいですか。", opts: ["読んで","作って","書いて","教えて"], ans: "教えて" }, 
+            { q: "バタポンさんを　むかえに（　）います。", opts: ["きいて","行かないで","来て","行って"], ans: "行って" } 
+        ];
+
+
+        let current = 0, score = 0;
+
+        function loadQuestion() {
+            const q = quizData[current];
+            document.getElementById("quiz").innerHTML = `
+                <div class='question'>${current + 1}. ${q.q}</div>
+                <div class='options'>
+                    ${q.opts.map(o => `<button onclick="checkAnswer(this,'${o}')">${o}</button>`).join("")}
+                </div>
+            `;
+        }
+
+        function checkAnswer(btn, selected) {
+            const correct = quizData[current].ans;
+            document.querySelectorAll(".options button").forEach(b => {
+                b.disabled = true;
+                if (b.textContent === correct) b.classList.add("correct");
+                else if (b.textContent === selected) b.classList.add("wrong");
+            });
+            if (selected === correct) score++;
+        }
+
+        function nextQuestion() {
+            if (current < quizData.length - 1) {
+                current++;
+                loadQuestion();
+            } else {
+                const percent = (score / quizData.length) * 100;
+                const msg = percent >= 90 ? "🔥 Rất tuyệt! Cậu đã chinh phục núi lửa rồi!" : "💪 Cố lên! Cậu sẽ làm được màaaaa!";
+                document.getElementById("quiz").innerHTML = `
+                    <h3>Kết quả: ${score}/${quizData.length} (${percent.toFixed(1)}%)</h3>
+                    <p>${msg}</p>
+                `;
+                document.getElementById("nextBtn").style.display = "none";
+            }
+        }
+
+        function goHome() { window.location.href = "index.html"; }
+        loadQuestion();
+    </script>
+</body>
+</html>
