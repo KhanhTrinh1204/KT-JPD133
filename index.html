@@ -7,6 +7,18 @@
     <title>KT Academy Nihongo</title>
     <link rel="stylesheet" href="css/style.css" />
 </head>
+<script>
+    function updateClock() {
+        const now = new Date();
+        // Giờ Việt Nam = GMT+7
+        const options = { timeZone: 'Asia/Ho_Chi_Minh', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+        const timeString = now.toLocaleTimeString('vi-VN', options);
+        document.getElementById("clock").innerHTML = "🕒: " + timeString;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+</script>
+
 
 <body>
     <!-- ===== HEADER ===== -->
@@ -15,8 +27,10 @@
         <nav>
             <a href="https://khanhtrinh1204.github.io/KT-Course/" target="_blank">About</a>
             <a class="active">Learning</a>
-            <a href="https://www.facebook.com/kaytee1204/" target="_blank">Connect</a>
+            <a href="https://www.facebook.com/kaytee1204/" target="_blank">Contact</a>
             <a href="https://www.youtube.com/@khanhtrinh1204/playlists" target="_blank">Speaking</a>
+            <a id="clock" style="margin-top:10px; font-size:1rem; color:#ffb64a;"></a>   
+            
         </nav>
 
     </header>
@@ -27,7 +41,7 @@
         <h1>KHANH TRINH JAPANESE COURSE</h1>
         <p>
             Trải nghiệm giao diện học tiếng Nhật hiện đại — nơi ánh sáng, màu sắc và tri thức hòa quyện.<br />
-            Hãy chọn bài học để bắt đầu hành trình cùng Khánh Trịnh nhó.
+            Hãy chọn bài học để bắt đầu hành trình cùng Khánh Trịnh nhé.
         </p>
 
         <!-- ===== LESSON CARDS ===== -->
@@ -57,8 +71,10 @@
 
     <!-- ===== FOOTER ===== -->
     <footer>
-        © 2025 KT Academy | Learn Japanese With Young Energy ✨
+        © 2025 <span>KT Academy Nihongo</span> | Learn Japanese With Young Energy ✨   
     </footer>
+
+
 </body>
 
 </html>
