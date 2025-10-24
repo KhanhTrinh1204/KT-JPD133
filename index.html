@@ -13,7 +13,7 @@
         // Giờ Việt Nam = GMT+7
         const options = { timeZone: 'Asia/Ho_Chi_Minh', hour: '2-digit', minute: '2-digit', second: '2-digit' };
         const timeString = now.toLocaleTimeString('vi-VN', options);
-        document.getElementById("clock").innerHTML = "🕒: " + timeString;
+        document.getElementById("clock").innerHTML = "" + timeString;
     }
     setInterval(updateClock, 1000);
     updateClock();
@@ -28,7 +28,7 @@
             <a href="https://khanhtrinh1204.github.io/KT-Course/" target="_blank">About</a>
             <a class="active">Learning</a>
             <a href="https://www.facebook.com/kaytee1204/" target="_blank">Contact</a>
-            <a href="https://www.youtube.com/@khanhtrinh1204/playlists" target="_blank">Speaking</a>
+            <a href="reading.html">Speaking</a>
             <a id="clock" style="margin-top:10px; font-size:1rem; color:#ffb64a;"></a>   
             
         </nav>

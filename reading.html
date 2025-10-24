@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bài đọc – KT Academy Nihongo 🎧</title>
+    <style>
+        body {
+            font-family: "Noto Sans JP", sans-serif;
+            background: radial-gradient(circle at top left, #0a1a2f, #020c18 90%);
+            color: #e0f0ff;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            background: linear-gradient(90deg, #031527, #041e3a);
+            color: #5cd1ff;
+            padding: 16px 0;
+            border-bottom: 1px solid #2196f3;
+            box-shadow: 0 0 12px rgba(33, 150, 243, 0.3);
+        }
+
+        header a {
+            color: #6dd5fa;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        header a:hover {
+            color: #b3ecff;
+        }
+
+        header .subnote {
+            font-size: 0.95rem;
+            color: #9bd5ff;
+            margin-top: 5px;
+            font-style: italic;
+            letter-spacing: 0.3px;
+        }
+
+
+        main {
+            flex: 1;
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 20px 30px;
+            text-align: left;
+        }
+
+        h2 {
+            color: #5cd1ff;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .reading-text {
+            line-height: 1.9;
+            font-size: 1.15rem;
+            color: #e8f5ff;
+            white-space: pre-line;
+            margin-bottom: 20px;
+            transition: opacity 0.5s ease;
+        }
+
+        audio {
+            width: 100%;
+            margin-top: 10px;
+            border-radius: 10px;
+            outline: none;
+            display: block;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        button {
+            background: linear-gradient(90deg, #1a73e8, #2196f3);
+            border: none;
+            color: white;
+            font-weight: 600;
+            padding: 10px 24px;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: linear-gradient(90deg, #2196f3, #42a5f5);
+            box-shadow: 0 0 12px rgba(66, 165, 245, 0.5);
+        }
+
+        .fade-out {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .reading-text,
+        h2 {
+            transition: opacity 0.3s ease;
+        }
+
+
+        footer {
+            background: #021120;
+            color: #88c9ff;
+            text-align: center;
+            padding: 16px 0;
+            font-size: 0.95rem;
+            border-top: 1px solid #2196f3;
+            margin-top: auto;
+        }
+
+        footer span {
+            color: #5cd1ff;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="index.html">🏠 Quay lại trang chủ</a>
+        <h1>Bài đọc - Khánh Trịnh 🎧</h1>
+        <p class="subnote">📖 Hãy nghe và đọc theo để luyện phát âm nhé！</p>
+    </header>
+
+
+    <main>
+        <h2 id="title"></h2>
+        <p id="text" class="reading-text"></p>
+        <audio id="audio" controls></audio>
+
+        <div class="controls">
+            <button onclick="prevLesson()">⬅ Trước</button>
+            <button onclick="nextLesson()">Tiếp ➡</button>
+        </div>
+    </main>
+
+    <footer>
+        © 2025 <span>KT Academy Nihongo</span> | Learn Japanese With Young Energy ✨
+    </footer>
+
+    <script>
+        const readings = [
+            {
+                title: "📘 Bài đọc 1: はじめまして",
+                text: `小さいとき、いなかに住んでいました。学校が遠くてたいへんでしたが、
+よく、学校から帰るときに友だちと野原を走ったり、川で泳いだりしました。
+家におそく帰ってくるので、母はおこりましたが、あのころは、とても楽しかったです。
+今は、大きい町の会社で働いています。野原や川はありませんが、
+お店がたくさんあります。買い物は便利です。
+母が病気になったので、来月からいっしょに住みます。
+ここは、病気が近いですから、母にも便利です。
+でも、わたしは、また野原や川で遊びたいです。`,
+                audio: "audio/reading1.mp3"
+            },
+            {
+                title: "📘 Bài đọc 2: 新しい家",
+                text: `３か月前、新しい家にひっこしました。
+１階には台所と居間、わたしとつまがいっしょに使う部屋があります。
+２階には子どもの部屋が二つあります。
+いまは子どもは一人しかいませんが、来月、あかちゃんが生まれます。
+子どもが小さいので、まだ２階の部屋は使っていません。
+
+ひっこすまえは、父と母と住んでいました。
+父と母は、毎日、子どもといっしょに遊びました。
+子どもはよく「おじいさん、おばあさんと遊びたい。」と言いました。
+
+それで、休みの日はたいてい、子どもといっしょに父と母に会いに行きます。
+あした、つまり、しごとに、わたしは父と母の家に行きます。`,
+                audio: "audio/reading2.mp3"
+            }
+        ];
+
+        let current = 0;
+
+        function loadLesson() {
+            const r = readings[current];
+            const textEl = document.getElementById("text");
+            const titleEl = document.getElementById("title");
+            const audioEl = document.getElementById("audio");
+
+            // Thêm class fade ra ngoài
+            textEl.classList.add("fade-out");
+            titleEl.classList.add("fade-out");
+
+            setTimeout(() => {
+                titleEl.textContent = r.title;
+                textEl.textContent = r.text;
+                audioEl.src = r.audio;
+
+                // Khi đổi xong nội dung, cho fade-in trở lại
+                textEl.classList.remove("fade-out");
+                titleEl.classList.remove("fade-out");
+            }, 150);
+        }
+
+
+        function nextLesson() {
+            current = (current + 1) % readings.length;
+            loadLesson();
+        }
+
+        function prevLesson() {
+            current = (current - 1 + readings.length) % readings.length;
+            loadLesson();
+        }
+
+        loadLesson();
+    </script>
+</body>
+
+</html>
